@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>پیتزای من</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="assets/icon/favicon.ico" type="image/x-icon">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- سبک‌های سفارشی -->
+  <style>
+      .kharid{
+          color: #1a1a2e;
+      }
+    :root {
+      --primary-orange: #ff6b35;
+      --secondary-orange: #ff8c42;
+      --accent-orange: #ffa726;
+      --dark-bg: #1a1a2e;
+      --darker-bg: #16213e;
+      --light-orange: #ffe0cc;
+      --text-dark: #2c3e50;
+      --text-light: #ecf0f1;
+      --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa726 100%);
+      --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      --shadow-soft: 0 10px 40px rgba(255, 107, 53, 0.15);
+      --shadow-hover: 0 20px 60px rgba(255, 107, 53, 0.25);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Vazirmatn', 'Inter', sans-serif !important;
+      scroll-behavior: smooth;
+      background: linear-gradient(45deg, #fef7f0 0%, #fff5ee 50%, #fdf2e9 100%);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    /* Header با glassmorphism */
+    .headerman {
+      position: fixed;
+      top: 0px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1030;
+      border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+    }
+    .headerman:hover {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
+    }
+    .nav-link {
+      color: var(--text-dark) !important;
+      font-size: 0.95rem;
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0.5rem 0.5rem !important;
+      border-radius: 12px;
+    }
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    .nav-link:hover {
+      color: var(--primary-orange) !important;
+      background: rgba(255, 107, 53, 0.1);
+      transform: translateY(-2px);
+    }
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 60%;
+      right: 20%;
+    }
+    .nav-link.active {
+      color: var(--primary-orange) !important;
+      font-weight: 700;
+      background: rgba(255, 107, 53, 0.1);
+    }
+    /* دکمه‌های مدرن */
+    .btn-orange {
+      background: var(--gradient-primary);
+      color: white;
+      font-weight: 600;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-orange::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+    .btn-orange:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--shadow-hover);
+      background: linear-gradient(135deg, #e55a2b 0%, #ff6b35 50%, #ff9500 100%);
+    }
+    .btn-orange:hover::before {
+      left: 100%;
+    }
+    /* Hero Section با پارالاکس */
+    .hero {
+      background: linear-gradient(
+          135deg,
+          rgba(255, 107, 53, 0.9) 0%,
+          rgba(255, 140, 66, 0.8) 50%,
+          rgba(255, 167, 38, 0.7) 100%
+        ),
+        url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUsVPdZWIQ3BTlyDtQt6IuSbcDM2jV81ojxMFVsfELv4QSkg4XSbrIfDj1rtXgLbDvv_TxjjEzcoy__eVAtAabFRCO6OfxpABRve_VLTg-pL2IG_549HKvVSWZlY5L_YOmD0N6Dvm6lF2hENqSaQehbM1IeJsc-g9bXu5h9IcJ637FW7uDbLVRFJninZnSOx0Gw_s08nD87sijLZHx6Nxdce-_bqqMCO9ZbzaVCGczFWCVvjXIbKwamQLoaTptLSEcxXfbPvQnHbk');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 70vh;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: float 20s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(120deg); }
+      66% { transform: translate(-20px, 20px) rotate(240deg); }
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #fff, #ffe0cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes textGlow {
+      from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+      to { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 167, 38, 0.3); }
+    }
+    .hero p {
+      font-size: 1.25rem;
+      font-weight: 400;
+      opacity: 0.95;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    /* کارت‌های مدرن */
+    .card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      position: relative;
+      background: white;
+      margin-bottom: 2rem;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+    .card-img-top {
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .card:hover .card-img-top {
+      transform: scale(1.1);
+    }
+    .card-body {
+      padding: 2rem;
+      position: relative;
+    }
+    .card-title {
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+    .card-text {
+      color: #6c757d;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    /* دکمه سفارش با آیکون */
+    .btn-add-to-cart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .btn-add-to-cart i::before {
+      content: '🛒';
+      font-size: 1.1rem;
+    }
+    /* Cart Badge */
+    .cart-badge {
+      position: relative;
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      background: var(--primary-orange);
+      color: white;
+      font-size: 0.75rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    /* Carousel مدرن */
+    .carousel {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+    .carousel-item img {
+      height: 400px;
+      object-fit: cover;
+      filter: brightness(0.8);
+      transition: all 0.3s ease;
+    }
+    .carousel-item.active img {
+      filter: brightness(1);
+    }
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    /* بخش‌های مختلف */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+    /* Blog Cards */
+    .blog-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+    .aspect-ratio-video {
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .aspect-ratio-video::before {
+      content: '▶';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 107, 53, 0.9);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .blog-card:hover .aspect-ratio-video::before {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    /* فرم تماس */
+    .form-control {
+      border: 2px solid #f0f0f0;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.5rem;
+    }
+    .form-control:focus {
+      border-color: var(--primary-orange);
+      box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.15);
+      background: white;
+      transform: translateY(-2px);
+    }
+    .form-label {
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    /* نظرات مشتریان */
+    .testimonial-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 107, 53, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      right: 20px;
+      font-size: 8rem;
+      color: rgba(255, 107, 53, 0.1);
+      font-family: serif;
+      line-height: 1;
+    }
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid var(--light-orange);
+      object-fit: cover;
+    }
+    .stars {
+      color: #ffc107;
+      margin: 1rem 0;
+    }
+    /* Footer */
+    footer {
+      background: var(--gradient-dark);
+      color: var(--text-light);
+      padding: 4rem 0 2rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-primary);
+    }
+    footer a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover {
+      color: var(--accent-orange);
+      transform: translateY(-2px);
+    }
+    .social-icon {
+      width: 24px;
+      height: 24px;
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: scale(1.2) rotate(10deg);
+      filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.3));
+    }
+    /* انیمیشن‌های ورود */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .headerman {
+        padding: 0.75rem 1rem;
+      }
+      .hero {
+        min-height: 50vh;
+        padding: 2rem 1rem;
+        margin: 1rem 0;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .nav-link {
+        font-size: 0.650rem !important;
+      }
+    }
+    /* Pizza floating animation */
+    .pizza {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      animation: pizzaFloat 3s ease-in-out infinite;
+    }
+    @keyframes pizzaFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-180deg); }
+    }
+    .logo-text {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+    /* Search bar */
+    .search-container {
+      position: relative;
+      max-width: 500px;
+    }
+    .search-container .form-control {
+      padding-right: 3rem;
+      border-radius: 25px;
+      border: 2px solid rgba(255, 107, 53, 0.2);
+    }
+    .search-container .input-group-text {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      z-index: 10;
+      color: var(--primary-orange);
+    }
+    /* View menu button */
+    .viewmenu {
+      margin-top: 2rem;
+      float: right;
+    }
+    /* Offcanvas styles */
+    .offcanvas {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+    }
+    .btn-primary {
+      background: var(--gradient-primary) !important;
+      border: none !important;
+      border-radius: 50px !important;
+    }
+    /* Container spacing */
+    .container {
+      margin-bottom: 3rem;
+    }
+    [id] {
+      scroll-margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- هدر -->
+  <header class="headerman d-flex align-items-center justify-content-between px-4 px-lg-5 navbar navbar-expand-md">
+    <!-- آیکون منو برای دستگاه‌های کوچک -->
+    <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+    </button>
+    <!-- منوی offcanvas -->
+    <div class="offcanvas offcanvas-end" style="direction: rtl; width: 70%; height: fit-content;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">منو</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="d-md-flex gap-3 me-4 flex-column flex-md-row">
+          <a class="nav-link" href="#menu">منو</a>
+          <a class="nav-link" href="#specialties">محصولات ویژه</a>
+          <a class="nav-link" href="#blog">بلاگ</a>
+          <a class="nav-link" href="#about">درباره ما</a>
+          <a class="nav-link" href="#contact">تماس با ما</a>
+          <a class="nav-link" href="#testimonials">نظرات مشتریان</a>
+          <a class="nav-link" href="login.html">ورود / ثبت‌نام</a>
+        </div>
+        <button class=" btn btn-orange btn-sm px-4 mt-3 mt-md-0 cart-badge" onclick="goToOrder()">
+          سبد خرید
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <div class="text-primary" style="width: 16px; height: 16px; position: relative;">
+        <img class="pizza" src="icon/pizza-svgrepo-com.svg" alt="">
+      </div>
+      <h2 class="h5 mb-0 text-dark">پیتزای من</h2>
+    </div>
+    <!-- آیکون سبد خرید دسکتاپ -->
+    <div class="d-none d-md-flex align-items-center cart-badge">
+      <a href="order.html" class="kharid btn btn-outline-light btn-sm px-3 position-relative">
+        سبد خرید
+        <span class="cart-count" id="cart-count-desktop">0</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="container py-5 mt-5" style="max-width: 1200px;">
+
+    <!-- بخش هیرو -->
+    <div class="hero animate-on-scroll">
+      <div>
+        <h1>پیتزا سنتی و خانگی</h1>
+        <p class="mb-0">طعم فوق‌العاده‌ای از پیتزاهای دست‌ساز ما را با بهترین مواد اولیه و با عشق تجربه کنید.</p>
+      </div>
+      <a href="menu.html"><button class="btn btn-orange btn-lg px-5 py-3">مشاهده منو</button></a>
+    </div>
+
+    <!-- منو -->
+    <div class="animate-on-scroll">
+      <h2 id="menu" class="section-title">منو</h2>
+      <div class="container">
+        <div class="row justify-content-center g-4">
+          <!-- پیتزا ۱ -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5tIgFTsWNELwz6fmHoGWT1f2xqi3a9jZ-jo7zQEycqtDNSJ2OgoVVVrtMeu5uzz2WmNg2Fhdm6b7smdHzHXjPquZ6v6HbMjuMCk5j-1IcvhdQCuihul5ZSzzxt7_BS4wpaCVfLcIdHE94tX6hxDdt1eUYLUMlPm-IofCcrwlBun16wKX6ydXeJL_4UGHSU_KbrmJkY3zkjYc4LPRGULlaZEbLKL2joRKPTiv6cN--ERQf4C-PWrH581KtSD4Qw1gB4dESHnRfPY0"
+                class="card-img-top" alt="پیتزا مخصوص">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">پیتزا مخصوص شف</h5>
+                <p class="card-text flex-grow-1">ترکیبی عالی از بهترین مواد اولیه با طعم بی‌نظیر و خمیر دست‌ساز.</p>
+                <button class="btn btn-orange mt-auto btn-add-to-cart" onclick="addToCart('پیتزا مخصوص شف')">
+                  اضافه به سبد
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- پیتزا ۲ -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLN3RF2QY3JBEJ5NNy_murGmBoAWwVP5uHAWEzsX3Zdr61d-yZ9dkI4Cd2q7zfADsRmvCAIMxkr0BKSgia5HPi7bTN6H8lrz81SlSS7-eyn0jtlwKRiESvph0I7__XLyyqmkTignIxbVDMZxMwpdaoKMMLWI34J2oFktOuopTj_VRorxaKozhnqdfVTBLYEGeGbGMXLLSr6QmHd8RX5tjVDJhK7qNtbfVajWdt6em0W82iX_Cxo93jC4X8fpvuJehW6bLWBMPwNFU"
+                class="card-img-top" alt="پیتزا مارگاریتا">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">پیتزا مارگاریتا کلاسیک</h5>
+                <p class="card-text flex-grow-1">طعم سنتی ایتالیایی با پنیر موزارلا تازه، گوجه فرنگی و ریحان.</p>
+                <button class="btn btn-orange mt-auto btn-add-to-cart" onclick="addToCart('مارگاریتا کلاسیک')">
+                  اضافه به سبد
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- پیتزا ۳ -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8M4IZ2Ehysd5Zqap0CWLjBhUZ4jcbfRff8k_RDZrvbHRmC2BoneOqJegRUTOnguqaxx29D4OCCx2-3UP9PbwY-Jo6X2pSyXCF_nZEqGfzWaJqzcLF2mCJnR01PJp69yMppBriz3PPOTgT9zzle2oWBYBfg3BptPqvTUHr3DeGS15zZJlS8NF9s5fD_2mfN8OvZGT_IKHOZWPVO8MVwfYWtlqDuwGKgm6k5GbVLC6a8WwYjLkonV3_yqwvDrirrD6hSgwjPyaYllg"
+                class="card-img-top" alt="پیتزا پپرونی">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">پیتزا پپرونی لوکس</h5>
+                <p class="card-text flex-grow-1">پپرونی مرغوب با پنیر‌های مخلوط و سس مخصوص خانگی.</p>
+                <button class="btn btn-orange mt-auto btn-add-to-cart" onclick="addToCart('پپرونی لوکس')">
+                  اضافه به سبد
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="menu.html"><button class="btn btn-orange btn-lg px-5">مشاهده منوی کامل</button></a>
+        </div>
+      </div>
+    </div>
+
+  <!-- محصولات ویژه -->
+  <div class="container mb-5 animate-on-scroll">
+    <h2 id="specialties" class="section-title">محصولات ویژه ما</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="اسلاید 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+              aria-label="اسلاید 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+              aria-label="اسلاید 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5tIgFTsWNELwz6fmHoGWT1f2xqi3a9jZ-jo7zQEycqtDNSJ2OgoVVVrtMeu5uzz2WmNg2Fhdm6b7smdHzHXjPquZ6v6HbMjuMCk5j-1IcvhdQCuihul5ZSzzxt7_BS4wpaCVfLcIdHE94tX6hxDdt1eUYLUMlPm-IofCcrwlBun16wKX6ydXeJL_4UGHSU_KbrmJkY3zkjYc4LPRGULlaZEbLKL2joRKPTiv6cN--ERQf4C-PWrH581KtSD4Qw1gB4dESHnRfPY0"
+                class="d-block w-100" alt="پیتزا ویژه">
+              <div class="carousel-caption">
+                <h5>پیتزا ویژه شف</h5>
+                <p>ترکیبی منحصر به فرد از بهترین مواد اولیه با طعم فوق‌العاده</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLN3RF2QY3JBEJ5NNy_murGmBoAWwVP5uHAWEzsX3Zdr61d-yZ9dkI4Cd2q7zfADsRmvCAIMxkr0BKSgia5HPi7bTN6H8lrz81SlSS7-eyn0jtlwKRiESvph0I7__XLyyqmkTignIxbVDMZxMwpdaoKMMLWI34J2oFktOuopTj_VRorxaKozhnqdfVTBLYEGeGbGMXLLSr6QmHd8RX5tjVDJhK7qNtbfVajWdt6em0W82iX_Cxo93jC4X8fpvuJehW6bLWBMPwNFU"
+                class="d-block w-100" alt="پیتزا سبزیجات">
+              <div class="carousel-caption">
+                <h5>پیتزا سبزیجات تازه</h5>
+                <p>سبزیجات تازه و ارگانیک با پنیرهای مرغوب</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8M4IZ2Ehysd5Zqap0CWLjBhUZ4jcbfRff8k_RDZrvbHRmC2BoneOqJegRUTOnguqaxx29D4OCCx2-3UP9PbwY-Jo6X2pSyXCF_nZEqGfzWaJqzcLF2mCJnR01PJp69yMppBriz3PPOTgT9zzle2oWBYBfg3BptPqvTUHr3DeGS15zZJlS8NF9s5fD_2mfN8OvZGT_IKHOZWPVO8MVwfYWtlqDuwGKgm6k5GbVLC6a8WwYjLkonV3_yqwvDrirrD6hSgwjPyaYllg"
+                class="d-block w-100" alt="پیتزا گوشت">
+              <div class="carousel-caption">
+                <h5>پیتزا گوشت مخصوص</h5>
+                <p>انواع گوشت‌های تازه و مرغوب با طعم بی‌نظیر</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">قبلی</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">بعدی</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- بلاگ -->
+  <div class="container mb-5 animate-on-scroll">
+    <h2 id="blog" class="section-title">بلاگ آموزشی</h2>
+    <div class="search-container mx-auto mb-4">
+      <div class="input-group">
+        <span class="input-group-text">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+            <path
+              d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z">
+            </path>
+          </svg>
+        </span>
+        <input type="text" class="form-control" placeholder="جستجوی دستور پخت و نکات پیتزا...">
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="blog-card">
+          <div class="aspect-ratio-video"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCNaKerqVrzk4RofZF6c-Jn6igqdSpARVK9FGAuCixLlmfr_23cesVZNQ-3PNKtUHmekkJqZUO-I4pXXIqdRsKwXGK7oKWcXRjzSzxuMvvnqGAw4_lsC8f978EIZKcLZoItnadA7K11ll3qsjf9luSenTL-Og3cp6MhTgj-LELJ-V3_Pc_zO9sF_ecPeSVZfPzQGR2mCaZ0PFRt4e5_O4pCQufLpcN88Hk2LAPIARQAHv2iIG-3x6n7-uvYiCaWQaO-L3Iv_XeJFg');">
+          </div>
+          <div class="p-3">
+            <h6 class="fw-bold mb-2">راز خمیر پیتزای حرفه‌ای</h6>
+            <p class="text-muted small">یاد بگیرید چگونه با دستورالعمل گام به گام ما، خمیر پیتزای عالی درست کنید.</p>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <span class="badge bg-light text-dark">۵ دقیقه مطالعه</span>
+              <small class="text-muted">۲ روز پیش</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="blog-card">
+          <div class="aspect-ratio-video"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCNaKerqVrzk4RofZF6c-Jn6igqdSpARVK9FGAuCixLlmfr_23cesVZNQ-3PNKtUHmekkJqZUO-I4pXXIqdRsKwXGK7oKWcXRjzSzxuMvvnqGAw4_lsC8f978EIZKcLZoItnadA7K11ll3qsjf9luSenTL-Og3cp6MhTgj-LELJ-V3_Pc_zO9sF_ecPeSVZfPzQGR2mCaZ0PFRt4e5_O4pCQufLpcN88Hk2LAPIARQAHv2iIG-3x6n7-uvYiCaWQaO-L3Iv_XeJFg');">
+          </div>
+          <div class="p-3">
+            <h6 class="fw-bold mb-2">بهترین پنیرها برای پیتزا</h6>
+            <p class="text-muted small">راهنمای کامل انتخاب و ترکیب پنیرها برای طعم فوق‌العاده پیتزا.</p>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <span class="badge bg-light text-dark">۷ دقیقه مطالعه</span>
+              <small class="text-muted">۱ هفته پیش</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="blog-card">
+          <div class="aspect-ratio-video"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCNaKerqVrzk4RofZF6c-Jn6igqdSpARVK9FGAuCixLlmfr_23cesVZNQ-3PNKtUHmekkJqZUO-I4pXXIqdRsKwXGK7oKWcXRjzSzxuMvvnqGAw4_lsC8f978EIZKcLZoItnadA7K11ll3qsjf9luSenTL-Og3cp6MhTgj-LELJ-V3_Pc_zO9sF_ecPeSVZfPzQGR2mCaZ0PFRt4e5_O4pCQufLpcN88Hk2LAPIARQAHv2iIG-3x6n7-uvYiCaWQaO-L3Iv_XeJFg');">
+          </div>
+          <div class="p-3">
+            <h6 class="fw-bold mb-2">تکنیک‌های پخت حرفه‌ای</h6>
+            <p class="text-muted small">نکات و ترفندهای حرفه‌ای برای پخت پیتزای عالی در خانه.</p>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <span class="badge bg-light text-dark">۱۰ دقیقه مطالعه</span>
+              <small class="text-muted">۲ هفته پیش</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- درباره ما -->
+  <div class="container mb-5 animate-on-scroll">
+    <div class="row align-items-center">
+      <div class="col-12">
+        <h2 id="about" class="section-title">درباره ما</h2>
+        <div class="bg-white p-5 rounded-4 shadow-sm">
+          <p class="lead mb-4" style="font-size: 1.2rem; line-height: 1.8;">
+            در <strong class="text-primary">پیتزای من</strong>، ما عاشق ساخت پیتزاهای خانگی و اصیل با دستورات سنتی و تازه‌ترین مواد اولیه هستیم.
+          </p>
+          <p class="mb-4" style="line-height: 1.7;">
+            هر پیتزای ما با دقت، عشق و احترام به سنت‌های کهن پیتزاسازی تهیه می‌شود. ما معتقدیم که غذای خوب نه تنها شکم را سیر می‌کند، بلکه قلب‌ها را نیز گرم می‌کند و خاطرات شیرین می‌سازد.
+          </p>
+          <div class="row g-4 mt-4">
+            <div class="col-md-4 text-center">
+              <div class="bg-light p-4 rounded-3">
+                <h3 class="text-primary mb-2">۱۰+</h3>
+                <p class="mb-0">سال تجربه</p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="bg-light p-4 rounded-3">
+                <h3 class="text-primary mb-2">۵۰۰+</h3>
+                <p class="mb-0">مشتری راضی</p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="bg-light p-4 rounded-3">
+                <h3 class="text-primary mb-2">۲۴/۷</h3>
+                <p class="mb-0">خدمات آنلاین</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- تماس با ما -->
+  <div class="container mb-5 animate-on-scroll">
+    <h2 id="contact" class="section-title">تماس با ما</h2>
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <div class="bg-white p-5 rounded-4 shadow-sm">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">نام و نام خانوادگی</label>
+                <input type="text" class="form-control" placeholder="نام شما">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">شماره تماس</label>
+                <input type="tel" class="form-control" placeholder="شماره موبایل">
+              </div>
+              <div class="col-12">
+                <label class="form-label">ایمیل</label>
+                <input type="email" class="form-control" placeholder="example@email.com">
+              </div>
+              <div class="col-12">
+                <label class="form-label">موضوع پیام</label>
+                <select class="form-control">
+                  <option>سفارش پیتزا</option>
+                  <option>شکایت و پیشنهاد</option>
+                  <option>همکاری</option>
+                  <option>سایر</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label">پیام شما</label>
+                <textarea class="form-control" rows="5" placeholder="پیام خود را اینجا بنویسید..."></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-orange btn-lg px-5">ارسال پیام</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+          <h5 class="mb-4">اطلاعات تماس</h5>
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-light p-3 rounded-circle me-3">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="mb-0 fw-medium">09193898001</p>
+              <small class="text-muted">شنبه تا پنجشنبه، ۱۰ تا ۲۲</small>
+            </div>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-light p-3 rounded-circle me-3">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="mb-0 fw-medium">قزوین ، خیابان بوعلی غربی</p>
+              <small class="text-muted">روبروی کوچه مدنی</small>
+            </div>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="bg-light p-3 rounded-circle me-3">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="mb-0 fw-medium">h.khanepaz@gmail.com</p>
+              <small class="text-muted">پاسخگویی ۲۴ ساعته</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- نظرات مشتریان -->
+  <div class="container mb-5 animate-on-scroll">
+    <h2 id="testimonials" class="section-title">نظرات مشتریان</h2>
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="testimonial-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQRpaulCVCAUIPavV4_E8vfoLvxwC6elvBNv-OvY9SE9p0ICwkYSGS1gY74lzmr0wWbANi1eBww3GJqwG9RLwSIrWbsKJoWXSj7xLPh-ylmH0hLZmfXdRoqANi6MznuBP5ARc9XPi9wyMziXoBiafkm1z2v9F9GcRb-aUnmgBzcggn1QgnYrvLx4_ryLC3vbHqW1NVJWxmclabvymKRMW_Pu7nhbN0kyRj5SPeqT2n6JaaJyA8zzt5JgTwy60ZJX0Pmak8AHAR5wk" alt="سوفیا بننت" class="testimonial-avatar">
+            <div>
+              <h6 class="mb-1 fw-bold">علی جانی</h6>
+              <small class="text-muted">مشتری VIP</small>
+            </div>
+          </div>
+          <div class="stars mb-3">
+            <span>⭐⭐⭐⭐⭐</span>
+          </div>
+          <p class="mb-3">"بهترین پیتزایی که تا به حال در تهران خورده‌ام! کیفیت مواد اولیه فوق‌العاده و خمیر به قدری نرم و خوشمزه بود که انگار در ایتالیا نشسته‌ام. خدمات هم عالی و سریع. قطعاً توصیه می‌کنم!"</p>
+          <div class="d-flex gap-3 text-muted">
+            <button class="btn btn-sm btn-light d-flex align-items-center gap-2">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.68 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.81-.34-3.68L23 12zm-10 5l-4-4 1.41-1.41L13 14.17l6.59-6.59L21 9l-8 8z"/>
+              </svg>
+              مفید بود
+            </button>
+            <span class="small">۱۵ آگوست ۲۰۲۳</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="testimonial-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="testimonial-avatar bg-primary d-flex align-items-center justify-content-center text-white fw-bold">
+              ع.ج
+            </div>
+            <div>
+              <h6 class="mb-1 fw-bold">معین خانی</h6>
+              <small class="text-muted">مشتری دائمی</small>
+            </div>
+          </div>
+          <div class="stars mb-3">
+            <span>⭐⭐⭐⭐⭐</span>
+          </div>
+          <p class="mb-3">"از وقتی پیتزای من رو کشف کردم، دیگه از هیچ جای دیگه پیتزا سفارش نمی‌دم. طعم و کیفیتشون واقعاً استثنائیه. مخصوصاً پیتزا مخصوص شف فوق‌العاده است!"</p>
+          <div class="d-flex gap-3 text-muted">
+            <button class="btn btn-sm btn-light d-flex align-items-center gap-2">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.68 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.81-.34-3.68L23 12zm-10 5l-4-4 1.41-1.41L13 14.17l6.59-6.59L21 9l-8 8z"/>
+              </svg>
+              مفید بود
+            </button>
+            <span class="small">۱۰ آگوست ۲۰۲۳</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- فوتر -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="text-primary" style="width: 32px; height: 32px;">
+              <img class="pizza" src="icon/pizza-svgrepo-com.svg" style="width: 30px;" alt="">
+            </div>
+            <h4 class="mb-0" style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">پیتزای من</h4>
+          </div>
+          <p class="text-light opacity-75 mb-4">بهترین پیتزاهای خانگی با کیفیت بالا و طعم فوق‌العاده. ما همیشه در خدمت شما هستیم.</p>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6 class="mb-3">دسترسی سریع</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#menu">منو</a></li>
+            <li class="mb-2"><a href="#specialties">محصولات ویژه</a></li>
+            <li class="mb-2"><a href="#blog">بلاگ</a></li>
+            <li class="mb-2"><a href="#about">درباره ما</a></li>
+            <li class="mb-2"><a href="#contact">تماس با ما</a></li>
+            <li class="mb-2"><a href="#testimonials">نظرات مشتریان</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6 class="mb-3">خدمات</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#">سفارش آنلاین</a></li>
+            <li class="mb-2"><a href="#">تحویل رایگان</a></li>
+            <li class="mb-2"><a href="#">همکاری با ما</a></li>
+            <li class="mb-2"><a href="#">ویژه شرکت‌ها</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="mb-3">ما را دنبال کنید</h6>
+          <div class="d-flex gap-3 mb-3">
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساپ" class="social-icon"></a>
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="اینستاگرام" class="social-icon"></a>
+          </div>
+          <p class="text-light opacity-75">برای دریافت آخرین تخفیف‌ها و اخبار، ما را دنبال کنید.</p>
+        </div>
+      </div>
+      <hr class="my-4 opacity-25">
+      <div class="text-center">
+        <p class="mb-0 text-light opacity-75">© 1404 پیتزای من. تمامی حقوق محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- اسکریپت مدیریت سبد خرید -->
+  <script>
+    // بارگذاری سبد از localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // به‌روزرسانی شمارنده
+    function updateCartCount() {
+      const count = cart.length;
+      document.getElementById('cart-count').textContent = count;
+      document.getElementById('cart-count-desktop').textContent = count;
+    }
+
+    // افزودن به سبد
+    function addToCart(name) {
+      cart.push({ name, price: 0 }); // قیمت بعداً اضافه می‌شود
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      alert(`${name} به سبد خرید اضافه شد!`);
+    }
+
+    // رفتن به صفحه سفارش
+    function goToOrder() {
+      if (cart.length === 0) {
+        alert('سبد خرید شما خالی است!');
+        return;
+      }
+      window.location.href = 'order.html';
+    }
+
+    // اولیه‌سازی شمارنده
+    updateCartCount();
+
+    // فعال‌سازی انیمیشن ورود
+    document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll(".animate-on-scroll");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animated");
+          }
+        });
+      }, { threshold: 0.1 });
+      elements.forEach(el => observer.observe(el));
+    });
+  </script>
+
+  <!-- اسکریپت فعال‌سازی لینک‌های فعال -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = document.querySelectorAll("h2[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+      function activateNav() {
+        const scrollY = window.scrollY + 80;
+        sections.forEach(section => {
+          const id = section.getAttribute("id");
+          const targetLink = document.querySelector(`a[href="#${id}"]`);
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          if (scrollY >= top && scrollY < top + height) {
+            navLinks.forEach(link => link.classList.remove("active"));
+            if (targetLink) targetLink.classList.add("active");
+          }
+        });
+      }
+      window.addEventListener("scroll", activateNav);
+      window.addEventListener("load", activateNav);
+      activateNav();
+      navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          setTimeout(activateNav, 500);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
