@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ثبت سفارش | پیتزای من</title>
+  <link rel="shortcut icon" href="assets/icon/favicon.ico" type="image/x-icon">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- استایل اختصاصی -->
+  <style>
+    :root {
+      --primary-orange: #ff6b35;
+      --secondary-orange: #ff8c42;
+      --accent-orange: #ffa726;
+      --dark-bg: #1a1a2e;
+      --darker-bg: #16213e;
+      --light-orange: #ffe0cc;
+      --text-dark: #2c3e50;
+      --text-light: #ecf0f1;
+      --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa726 100%);
+      --shadow-soft: 0 10px 40px rgba(255, 107, 53, 0.15);
+      --shadow-hover: 0 20px 60px rgba(255, 107, 53, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Vazirmatn', 'Inter', sans-serif;
+      background: linear-gradient(45deg, #fef7f0 0%, #fff5ee 50%, #fdf2e9 100%);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Header با glassmorphism */
+    .headerman {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1030;
+      border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .headerman:hover {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .logo h2 {
+      margin: 0;
+      color: var(--text-dark);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .btn-back {
+      color: var(--primary-orange);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* محتوای اصلی */
+    .order-container {
+      max-width: 1200px;
+      margin: 120px auto 60px;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @media (min-width: 992px) {
+      .order-container {
+        flex-direction: row;
+        gap: 2.5rem;
+      }
+    }
+
+    /* فرم اطلاعات */
+    .order-form {
+      flex: 1;
+      background: white;
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--light-orange);
+      padding-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 1rem;
+      transition: border 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-orange);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    }
+
+    .form-check-input:checked {
+      background-color: var(--primary-orange);
+      border-color: var(--primary-orange);
+    }
+
+    /* سبد خرید */
+    .order-summary {
+      flex: 0 0 380px;
+      background: white;
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      position: sticky;
+      top: 100px;
+      align-self: flex-start;
+    }
+
+    .summary-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1.2rem;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px dashed #eee;
+    }
+
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .item-details {
+      flex: 1;
+      font-size: 0.95rem;
+    }
+
+    .item-name {
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 0.3rem;
+    }
+
+    .item-price {
+      color: var(--primary-orange);
+      font-weight: 600;
+    }
+
+    .item-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-qty {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-qty:hover {
+      background: var(--primary-orange);
+      color: white;
+    }
+
+    .qty-value {
+      min-width: 2rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .btn-remove {
+      font-size: 0.8rem;
+      color: #dc3545;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .btn-remove:hover {
+      text-decoration: underline;
+    }
+
+    /* کد تخفیف */
+    .discount-section {
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #eee;
+    }
+
+    .discount-input {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .discount-input input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-family: 'Vazirmatn';
+    }
+
+    .btn-apply {
+      background: var(--primary-orange);
+      color: white;
+      border: none;
+      padding: 0 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .discount-message {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #28a745;
+      display: none;
+    }
+
+    /* جمع‌بندی قیمت */
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 2px solid #f0f0f0;
+      color: var(--text-dark);
+    }
+
+    .total-amount {
+      color: #e53935;
+    }
+
+    .delivery-fee {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      margin-top: 1.5rem;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      background: linear-gradient(135deg, #e55a2b 0%, #ff6b35 50%, #ff9500 100%);
+    }
+
+    /* فوتر */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #777;
+      font-size: 0.9rem;
+      background: #f9f9f9;
+      margin-top: 4rem;
+    }
+
+    /* موبایل */
+    @media (max-width: 768px) {
+      .cart-item {
+        gap: 0.8rem;
+      }
+      .cart-item img {
+        width: 50px;
+        height: 50px;
+      }
+      .order-summary {
+        flex: 1;
+        max-width: none;
+      }
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #999;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- هدر -->
+  <header class="headerman d-flex align-items-center justify-content-between px-4 px-lg-5">
+    <a href="menu.html" class="logo">
+      <img src="assets/icon/pizza-svgrepo-com.svg" alt="پیتزا">
+      <h2>پیتزای من</h2>
+    </a>
+    <a href="menu.html" class="btn-back">← بازگشت به منو</a>
+  </header>
+
+  <!-- محتوای اصلی -->
+  <main class="order-container">
+    
+    <!-- فرم سفارش -->
+    <section class="order-form">
+      <h2 class="form-title">اطلاعات سفارش‌دهنده</h2>
+
+      <div class="form-group">
+        <label for="name" class="form-label">نام و نام خانوادگی</label>
+        <input type="text" id="name" class="form-control" placeholder="محمدمهدی رضایی">
+      </div>
+
+      <div class="form-group">
+        <label for="phone" class="form-label">شماره تماس</label>
+        <input type="tel" id="phone" class="form-control" placeholder="0912 345 6789">
+      </div>
+
+      <div class="form-group">
+        <label for="address" class="form-label">آدرس تحویل</label>
+        <textarea id="address" class="form-control" rows="3" placeholder="آدرس کامل خود را وارد کنید..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">روش تحویل</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="delivery" id="delivery-home" checked>
+          <label class="form-check-label" for="delivery-home">تحویل در محل (پیک)</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="delivery" id="delivery-pickup">
+          <label class="form-check-label" for="delivery-pickup">دریافت از فروشگاه</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="notes" class="form-label">یادداشت‌های سفارش (اختیاری)</label>
+        <textarea id="notes" class="form-control" rows="2" placeholder="مثلاً: درب پشتی، بدون قارچ، ..."></textarea>
+      </div>
+
+      <button type="button" class="btn-submit">ثبت نهایی سفارش</button>
+    </section>
+
+    <!-- سبد خرید -->
+    <aside class="order-summary">
+      <h3 class="summary-title">سبد خرید شما</h3>
+
+      <!-- آیتم‌های سبد (به صورت پویا اضافه می‌شوند) -->
+      <div id="cart-items">
+        <!-- توسط JavaScript پر می‌شود -->
+      </div>
+
+      <div id="empty-cart-message" class="empty-cart" style="display: none;">
+        سبد خرید شما خالی است.
+      </div>
+
+      <!-- کد تخفیف -->
+      <div class="discount-section">
+        <label class="form-label">کد تخفیف</label>
+        <div class="discount-input">
+          <input type="text" id="discount-code" placeholder="کد خود را وارد کنید">
+          <button class="btn-apply" onclick="applyDiscount()">اعمال</button>
+        </div>
+        <div id="discount-message" class="discount-message">تخفیف ۱۰٪ اعمال شد!</div>
+      </div>
+
+      <!-- جمع‌بندی قیمت -->
+      <div class="total-row">
+        <span>جمع کل</span>
+        <span id="total-amount">۰ تومان</span>
+      </div>
+      <div class="delivery-fee">+ ۳۵,۰۰۰ تومان هزینه پیک</div>
+    </aside>
+
+  </main>
+  <div class="text-center mt-5">
+    <a href="index.html" class="btn btn-outline-secondary px-5 py-2">بازگشت به صفحه اصلی</a>
+  </div>
+</div>
+  <!-- فوتر -->
+  <footer>
+    <p>© 1404 پیتزای من. تمامی حقوق محفوظ است.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- اسکریپت سبد خرید -->
+  <script>
+    // داده‌های محصولات (باید با صفحه منو یکسان باشد)
+    const productData = {
+      'مارگاریتا کلاسیک': {
+        price: 295000,
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLN3RF2QY3JBEJ5NNy_murGmBoAWwVP5uHAWEzsX3Zdr61d-yZ9dkI4Cd2q7zfADsRmvCAIMxkr0BKSgia5HPi7bTN6H8lrz81SlSS7-eyn0jtlwKRiESvph0I7__XLyyqmkTignIxbVDMZxMwpdaoKMMLWI34J2oFktOuopTj_VRorxaKozhnqdfVTBLYEGeGbGMXLLSr6QmHd8RX5tjVDJhK7qNtbfVajWdt6em0W82iX_Cxo93jC4X8fpvuJehW6bLWBMPwNFU'
+      },
+      'مخصوص شف': {
+        price: 420000,
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD5tIgFTsWNELwz6fmHoGWT1f2xqi3a9jZ-jo7zQEycqtDNSJ2OgoVVVrtMeu5uzz2WmNg2Fhdm6b7smdHzHXjPquZ6v6HbMjuMCk5j-1IcvhdQCuihul5ZSzzxt7_BS4wpaCVfLcIdHE94tX6hxDdt1eUYLUMlPm-IofCcrwlBun16wKX6ydXeJL_4UGHSU_KbrmJkY3zkjYc4LPRGULlaZEbLKL2joRKPTiv6cN--ERQf4C-PWrH581KtSD4Qw1gB4dESHnRfPY0'
+      },
+      'پپرونی لوکس': {
+        price: 380000,
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB8M4IZ2Ehysd5Zqap0CWLjBhUZ4jcbfRff8k_RDZrvbHRmC2BoneOqJegRUTOnguqaxx29D4OCCx2-3UP9PbwY-Jo6X2pSyXCF_nZEqGfzWaJqzcLF2mCJnR01PJp69yMppBriz3PPOTgT9zzle2oWBYBfg3BptPqvTUHr3DeGS15zZJlS8NF9s5fD_2mfN8OvZGT_IKHOZWPVO8MVwfYWtlqDuwGKgm6k5GbVLC6a8WwYjLkonV3_yqwvDrirrD6hSgwjPyaYllg'
+      },
+      'سبزیجات تازه': {
+        price: 320000,
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLN3RF2QY3JBEJ5NNy_murGmBoAWwVP5uHAWEzsX3Zdr61d-yZ9dkI4Cd2q7zfADsRmvCAIMxkr0BKSgia5HPi7bTN6H8lrz81SlSS7-eyn0jtlwKRiESvph0I7__XLyyqmkTignIxbVDMZxMwpdaoKMMLWI34J2oFktOuopTj_VRorxaKozhnqdfVTBLYEGeGbGMXLLSr6QmHd8RX5tjVDJhK7qNtbfVajWdt6em0W82iX_Cxo93jC4X8fpvuJehW6bLWBMPwNFU'
+      },
+      'هفت گوشت': {
+        price: 450000,
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB8M4IZ2Ehysd5Zqap0CWLjBhUZ4jcbfRff8k_RDZrvbHRmC2BoneOqJegRUTOnguqaxx29D4OCCx2-3UP9PbwY-Jo6X2pSyXCF_nZEqGfzWaJqzcLF2mCJnR01PJp69yMppBriz3PPOTgT9zzle2oWBYBfg3BptPqvTUHr3DeGS15zZJlS8NF9s5fD_2mfN8OvZGT_IKHOZWPVO8MVwfYWtlqDuwGKgm6k5GbVLC6a8WwYjLkonV3_yqwvDrirrD6hSgwjPyaYllg'
+      },
+      'چیزکیک ایتالیایی': {
+        price: 180000,
+        img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+      }
+    };
+
+    // سبد خرید از localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // نمایش سبد خرید
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      const emptyMessage = document.getElementById('empty-cart-message');
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '';
+        emptyMessage.style.display = 'block';
+        document.getElementById('total-amount').textContent = '۰ تومان';
+        return;
+      }
+
+      emptyMessage.style.display = 'none';
+      cartItems.innerHTML = '';
+
+      cart.forEach(item => {
+        const data = productData[item.name];
+        if (!data) return;
+
+        const itemEl = document.createElement('div');
+        itemEl.className = 'cart-item';
+        itemEl.dataset.id = item.name;
+
+        itemEl.innerHTML = `
+          <img src="${data.img}" alt="${item.name}">
+          <div class="item-details">
+            <div class="item-name">${item.name}</div>
+            <div class="item-price">${new Intl.NumberFormat('fa-IR').format(data.price)} تومان</div>
+            <div class="item-controls">
+              <button class="btn-qty" onclick="changeQuantity('${item.name}', -1)">−</button>
+              <span class="qty-value" id="qty-${item.name}">${item.qty || 1}</span>
+              <button class="btn-qty" onclick="changeQuantity('${item.name}', 1)">+</button>
+            </div>
+            <button class="btn-remove" onclick="removeItem('${item.name}')">حذف</button>
+          </div>
+        `;
+        cartItems.appendChild(itemEl);
+      });
+
+      updateTotal();
+    }
+
+    // تغییر تعداد
+    function changeQuantity(name, delta) {
+      const item = cart.find(p => p.name === name);
+      if (item) {
+        item.qty = (item.qty || 1) + delta;
+        if (item.qty < 1) item.qty = 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+      }
+    }
+
+    // حذف آیتم
+    function removeItem(name) {
+      cart = cart.filter(p => p.name !== name);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    // محاسبه جمع کل
+    function updateTotal() {
+      let total = 0;
+      cart.forEach(item => {
+        const data = productData[item.name];
+        if (data) {
+          total += data.price * (item.qty || 1);
+        }
+      });
+
+      const deliveryFee = 35000;
+      total += deliveryFee;
+
+      document.getElementById('total-amount').textContent = 
+        new Intl.NumberFormat('fa-IR').format(total) + ' تومان';
+    }
+
+    // اعمال کد تخفیف
+    function applyDiscount() {
+      const code = document.getElementById('discount-code').value.trim();
+      const message = document.getElementById('discount-message');
+      message.style.display = 'none';
+
+      if (code === 'PIZZA10') {
+        message.textContent = 'تخفیف ۱۰٪ اعمال شد!';
+        message.style.color = '#28a745';
+        message.style.display = 'block';
+      } else if (code) {
+        message.textContent = 'کد تخفیف نامعتبر است.';
+        message.style.color = '#dc3545';
+        message.style.display = 'block';
+      }
+    }
+
+    // دکمه سفارش
+    document.querySelector('.btn-submit').addEventListener('click', function() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      if (!name || !phone) {
+        alert('لطفاً نام و شماره تماس را وارد کنید.');
+        return;
+      }
+      if (cart.length === 0) {
+        alert('سبد خرید شما خالی است!');
+        return;
+      }
+      alert('سفارش شما با موفقیت ثبت شد! به زودی تماس خواهیم گرفت.');
+      // در عملیات واقعی: ارسال به سرور
+      localStorage.removeItem('cart'); // پاک کردن سبد پس از ثبت
+      cart = [];
+      renderCart();
+    });
+
+    // اولیه‌سازی
+    renderCart();
+  </script>
+</body>
+</html>

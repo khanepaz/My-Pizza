@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منوی کامل - پیتزای من</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="shortcut icon" href="assets/icon/favicon.ico" type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- سبک‌های سفارشی -->
+  <style>
+       .kharid{
+          color: #1a1a2e !important;
+      }
+      .pizza {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      animation: pizzaFloat 3s ease-in-out infinite;
+    }
+    @keyframes pizzaFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-180deg); }
+    }
+    :root {
+      --primary-orange: #ff6b35;
+      --secondary-orange: #ff8c42;
+      --accent-orange: #ffa726;
+      --dark-bg: #1a1a2e;
+      --darker-bg: #16213e;
+      --light-orange: #ffe0cc;
+      --text-dark: #2c3e50;
+      --text-light: #ecf0f1;
+      --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa726 100%);
+      --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      --shadow-soft: 0 10px 40px rgba(255, 107, 53, 0.15);
+      --shadow-hover: 0 20px 60px rgba(255, 107, 53, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Vazirmatn', 'Inter', sans-serif !important;
+      scroll-behavior: smooth;
+      background: linear-gradient(45deg, #fef7f0 0%, #fff5ee 50%, #fdf2e9 100%);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Header با glassmorphism */
+    .headerman {
+      position: fixed;
+      top: 0px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1030;
+      border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .headerman:hover {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
+    }
+
+    .nav-link {
+      color: var(--text-dark) !important;
+      font-size: 0.95rem;
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0.5rem 1rem !important;
+      border-radius: 12px;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-orange) !important;
+      background: rgba(255, 107, 53, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      width: 60%;
+      right: 20%;
+    }
+
+    .nav-link.active {
+      color: var(--primary-orange) !important;
+      font-weight: 700;
+      background: rgba(255, 107, 53, 0.1);
+    }
+
+    /* دکمه‌های مدرن */
+    .btn-orange {
+      background: var(--gradient-primary);
+      color: white;
+      font-weight: 600;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-orange::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-orange:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--shadow-hover);
+      background: linear-gradient(135deg, #e55a2b 0%, #ff6b35 50%, #ff9500 100%);
+    }
+
+    .btn-orange:hover::before {
+      left: 100%;
+    }
+
+    /* Hero Section */
+    .hero-menu {
+      background: var(--gradient-dark);
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+      border-radius: 24px;
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-menu h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #fff, #ffe0cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-menu p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* کارت‌های منو */
+    .menu-card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      background: white;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .menu-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .menu-img {
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .menu-card:hover .menu-img {
+      transform: scale(1.1);
+    }
+
+    .menu-body {
+      padding: 1.8rem;
+    }
+
+    .menu-title {
+      font-weight: 700;
+      color: var(--text-dark);
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .menu-desc {
+      color: #6c757d;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .menu-price {
+      font-weight: 700;
+      color: var(--primary-orange);
+      font-size: 1.2rem;
+    }
+
+    .badge-new {
+      background: var(--primary-orange);
+      color: white;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+    }
+
+    /* دسته‌بندی منو */
+    .category-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin: 3rem 0 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .category-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      right: 0;
+      width: 50px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    /* فیلتر دسته‌بندی */
+    .category-filter {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: white;
+      color: var(--text-dark);
+      border: 2px solid #f0f0f0;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary-orange);
+      color: white;
+      border-color: var(--primary-orange);
+    }
+
+    /* آیکون سبد خرید */
+    .cart-badge {
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      background: var(--primary-orange);
+      color: white;
+      font-size: 0.75rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* دکمه اضافه به سبد */
+    .btn-add-to-cart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .btn-add-to-cart i::before {
+      content: '🛒';
+      font-size: 1.1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .headerman {
+        padding: 0.75rem 1rem;
+      }
+      .hero-menu {
+        padding: 3rem 1rem;
+        margin: 1rem 0;
+      }
+      .category-filter {
+        justify-content: flex-start;
+      }
+    }
+
+    /* انیمیشن ورود */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- هدر -->
+<header class="headerman d-flex align-items-center justify-content-between px-4 px-lg-5 navbar navbar-expand-md">
+  <!-- آیکون منو برای دستگاه‌های کوچک -->
+  <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+    </svg>
+  </button>
+  <!-- منوی offcanvas -->
+  <div class="offcanvas offcanvas-end" style="direction: rtl; width: 70%; height: fit-content;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">منو</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="d-md-flex gap-3 me-4 flex-column flex-md-row">
+        <a class="nav-link" href="#menu">منو</a>
+      </div>
+      <button class="btn btn-orange btn-sm px-4 mt-3 mt-md-0 cart-badge" onclick="goToOrder()">
+        سبد خرید
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <div class="text-primary" style="width: 16px; height: 16px; position: relative;">
+      <img class="pizza" src="icon/pizza-svgrepo-com.svg" alt="">
+    </div>
+    <h2 class="h5 mb-0 text-dark">پیتزای من</h2>
+  </div>
+  <!-- آیکون سبد خرید دسکتاپ -->
+  <div class="kharid d-none d-md-flex align-items-center cart-badge">
+    <a href="order.html" class="kharid btn btn-outline-light btn-sm px-3 position-relative">
+      سبد خرید
+      <span class="cart-count" id="cart-count-desktop">0</span>
+    </a>
+  </div>
+</header>
+
+<!-- بخش هیرو -->
+<section class="hero-menu animate-on-scroll">
+  <h1>منوی کامل ما</h1>
+  <p>هر پیتزا با مواد اولیه تازه، عشق و دستور سنتی درست شده است.</p>
+</section>
+
+<div class="container py-5">
+
+  <!-- فیلتر دسته‌ها -->
+  <div class="category-filter">
+    <button class="filter-btn active" onclick="filterCategory('all')">همه</button>
+    <button class="filter-btn" onclick="filterCategory('classic')">کلاسیک</button>
+    <button class="filter-btn" onclick="filterCategory('luxury')">لوکس</button>
+    <button class="filter-btn" onclick="filterCategory('vegan')">سبزیجات</button>
+    <button class="filter-btn" onclick="filterCategory('dessert')">دسر</button>
+  </div>
+
+  <!-- منوی پیتزاها -->
+  <h2 class="category-title">پیتزاهای ما</h2>
+  <div class="row g-4" id="menu-items">
+    <!-- پیتزا ۱ -->
+    <div class="col-12 col-md-6 col-lg-4" data-category="classic">
+      <div class="menu-card h-100 animate-on-scroll">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLN3RF2QY3JBEJ5NNy_murGmBoAWwVP5uHAWEzsX3Zdr61d-yZ9dkI4Cd2q7zfADsRmvCAIMxkr0BKSgia5HPi7bTN6H8lrz81SlSS7-eyn0jtlwKRiESvph0I7__XLyyqmkTignIxbVDMZxMwpdaoKMMLWI34J2oFktOuopTj_VRorxaKozhnqdfVTBLYEGeGbGMXLLSr6QmHd8RX5tjVDJhK7qNtbfVajWdt6em0W82iX_Cxo93jC4X8fpvuJehW6bLWBMPwNFU"
+          class="menu-img w-100" alt="مارگاریتا">
+        <div class="menu-body">
+          <h5 class="menu-title">مارگاریتا کلاسیک</h5>
+          <p class="menu-desc">پنیر موزارلا تازه، گوجه فرنگی طبیعی، ریحان تازه و سس خانگی.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="menu-price">۲۹۵,۰۰۰ تومان</span>
+            <button class="btn btn-orange btn-sm px-4 btn-add-to-cart" onclick="addToCart('مارگاریتا کلاسیک', 295000)">
+              اضافه به سبد
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- پیتزا ۲ -->
+    <div class="col-12 col-md-6 col-lg-4" data-category="luxury">
+      <div class="menu-card h-100 animate-on-scroll">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5tIgFTsWNELwz6fmHoGWT1f2xqi3a9jZ-jo7zQEycqtDNSJ2OgoVVVrtMeu5uzz2WmNg2Fhdm6b7smdHzHXjPquZ6v6HbMjuMCk5j-1IcvhdQCuihul5ZSzzxt7_BS4wpaCVfLcIdHE94tX6hxDdt1eUYLUMlPm-IofCcrwlBun16wKX6ydXeJL_4UGHSU_KbrmJkY3zkjYc4LPRGULlaZEbLKL2joRKPTiv6cN--ERQf4C-PWrH581KtSD4Qw1gB4dESHnRfPY0"
+          class="menu-img w-100" alt="مخصوص شف">
+        <div class="menu-body">
+          <h5 class="menu-title">مخصوص شف</h5>
+          <span class="badge-new">جدید</span>
+          <p class="menu-desc">ترکیبی انحصاری از ۵ نوع پنیر، پپرونی مرغوب، قارچ و فلفل رنگی.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="menu-price">۴۲۰,۰۰۰ تومان</span>
+            <button class="btn btn-orange btn-sm px-4 btn-add-to-cart" onclick="addToCart('مخصوص شف', 420000)">
+              اضافه به سبد
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- پیتزا ۳ -->
+    <div class="col-12 col-md-6 col-lg-4" data-category="luxury">
+      <div class="menu-card h-100 animate-on-scroll">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8M4IZ2Ehysd5Zqap0CWLjBhUZ4jcbfRff8k_RDZrvbHRmC2BoneOqJegRUTOnguqaxx29D4OCCx2-3UP9PbwY-Jo6X2pSyXCF_nZEqGfzWaJqzcLF2mCJnR01PJp69yMppBriz3PPOTgT9zzle2oWBYBfg3BptPqvTUHr3DeGS15zZJlS8NF9s5fD_2mfN8OvZGT_IKHOZWPVO8MVwfYWtlqDuwGKgm6k5GbVLC6a8WwYjLkonV3_yqwvDrirrD6hSgwjPyaYllg"
+          class="menu-img w-100" alt="پپرونی لوکس">
+        <div class="menu-body">
+          <h5 class="menu-title">پپرونی لوکس</h5>
+          <p class="menu-desc">پپرونی ایتالیایی، پنیر موزارلا دوبل، سس گوجه غنی و خمیر دست‌ساز.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="menu-price">۳۸۰,۰۰۰ تومان</span>
+            <button class="btn btn-orange btn-sm px-4 btn-add-to-cart" onclick="addToCart('پپرونی لوکس', 380000)">
+              اضافه به سبد
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- پیتزا ۴ -->
+    <div class="col-12 col-md-6 col-lg-4" data-category="vegan">
+      <div class="menu-card h-100 animate-on-scroll">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLN3RF2QY3JBEJ5NNy_murGmBoAWwVP5uHAWEzsX3Zdr61d-yZ9dkI4Cd2q7zfADsRmvCAIMxkr0BKSgia5HPi7bTN6H8lrz81SlSS7-eyn0jtlwKRiESvph0I7__XLyyqmkTignIxbVDMZxMwpdaoKMMLWI34J2oFktOuopTj_VRorxaKozhnqdfVTBLYEGeGbGMXLLSr6QmHd8RX5tjVDJhK7qNtbfVajWdt6em0W82iX_Cxo93jC4X8fpvuJehW6bLWBMPwNFU"
+          class="menu-img w-100" alt="سبزیجات">
+        <div class="menu-body">
+          <h5 class="menu-title">سبزیجات تازه</h5>
+          <p class="menu-desc">فلفل رنگی، قارچ، کدو، پیاز، زیتون و ریحان تازه — بدون گوشت.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="menu-price">۳۲۰,۰۰۰ تومان</span>
+            <button class="btn btn-orange btn-sm px-4 btn-add-to-cart" onclick="addToCart('سبزیجات تازه', 320000)">
+              اضافه به سبد
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- پیتزا ۵ -->
+    <div class="col-12 col-md-6 col-lg-4" data-category="classic">
+      <div class="menu-card h-100 animate-on-scroll">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8M4IZ2Ehysd5Zqap0CWLjBhUZ4jcbfRff8k_RDZrvbHRmC2BoneOqJegRUTOnguqaxx29D4OCCx2-3UP9PbwY-Jo6X2pSyXCF_nZEqGfzWaJqzcLF2mCJnR01PJp69yMppBriz3PPOTgT9zzle2oWBYBfg3BptPqvTUHr3DeGS15zZJlS8NF9s5fD_2mfN8OvZGT_IKHOZWPVO8MVwfYWtlqDuwGKgm6k5GbVLC6a8WwYjLkonV3_yqwvDrirrD6hSgwjPyaYllg"
+          class="menu-img w-100" alt="هفت گوشت">
+        <div class="menu-body">
+          <h5 class="menu-title">هفت گوشت</h5>
+          <p class="menu-desc">ترکیبی از ۷ نوع گوشت مرغوب، پنیر دوبل و سس خانگی.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="menu-price">۴۵۰,۰۰۰ تومان</span>
+            <button class="btn btn-orange btn-sm px-4 btn-add-to-cart" onclick="addToCart('هفت گوشت', 450000)">
+              اضافه به سبد
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- دسر -->
+    <div class="col-12 col-md-6 col-lg-4" data-category="dessert">
+      <div class="menu-card h-100 animate-on-scroll">
+        <img
+          src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+          class="menu-img w-100" alt="چیزکیک">
+        <div class="menu-body">
+          <h5 class="menu-title">چیزکیک ایتالیایی</h5>
+          <p class="menu-desc">چیزکیک خامه‌ای با طعم لیمو، موز و تزیین شده با توت‌فرنگی.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="menu-price">۱۸۰,۰۰۰ تومان</span>
+            <button class="btn btn-orange btn-sm px-4 btn-add-to-cart" onclick="addToCart('چیزکیک ایتالیایی', 180000)">
+              اضافه به سبد
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- دکمه بازگشت به صفحه اصلی -->
+  <div class="text-center mt-5">
+    <a href="index.html" class="btn btn-outline-secondary px-5 py-2">بازگشت به صفحه اصلی</a>
+  </div>
+</div>
+
+<!-- فوتر -->
+<footer class="bg-dark text-light py-4 mt-5">
+  <div class="container text-center">
+    <p class="mb-0 text-light opacity-75">© 1404 پیتزای من. تمامی حقوق محفوظ است.</p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- اسکریپت سبد خرید -->
+<script>
+  // بارگذاری سبد از localStorage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // به‌روزرسانی شمارنده
+  function updateCartCount() {
+    const count = cart.length;
+    document.getElementById('cart-count').textContent = count;
+    document.getElementById('cart-count-desktop').textContent = count;
+  }
+
+  // افزودن به سبد
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    alert(`${name} به سبد خرید اضافه شد!`);
+  }
+
+  // رفتن به صفحه سفارش
+  function goToOrder() {
+    if (cart.length === 0) {
+      alert('سبد خرید شما خالی است!');
+      return;
+    }
+    window.location.href = 'order.html';
+  }
+
+  // اولیه‌سازی شمارنده
+  updateCartCount();
+
+  // فیلتر دسته‌بندی
+  function filterCategory(category) {
+    const items = document.querySelectorAll('#menu-items .col-12');
+    items.forEach(item => {
+      if (category === 'all' || item.getAttribute('data-category') === category) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // آپدیت دکمه‌های فیلتر
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // انیمیشن ورود
+  document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".animate-on-scroll");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animated");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => observer.observe(el));
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ورود با کد | پیتزای من</title>
+  <link rel="shortcut icon" href="assets/icon/favicon.ico" type="image/x-icon">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- استایل اختصاصی -->
+  <style>
+    :root {
+      --primary-orange: #ff6b35;
+      --secondary-orange: #ff8c42;
+      --accent-orange: #ffa726;
+      --dark-bg: #1a1a2e;
+      --darker-bg: #16213e;
+      --light-orange: #ffe0cc;
+      --text-dark: #2c3e50;
+      --text-light: #ecf0f1;
+      --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa726 100%);
+      --shadow-soft: 0 10px 40px rgba(255, 107, 53, 0.15);
+      --shadow-card: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Vazirmatn', 'Inter', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.7;
+      min-height: 100vh;
+      background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(22, 33, 62, 0.75);
+      z-index: -1;
+    }
+
+    /* کانتینر اصلی */
+    .login-container {
+      max-width: 500px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      direction: rtl;
+      margin: 0px auto;
+    }
+
+    /* هدر */
+    .login-header {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      position: relative;
+    }
+
+    .pizza-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      animation: pizzaFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes pizzaFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(-270deg); }
+    }
+
+    .login-header h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: black;
+      margin: 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      color: black;
+      margin-top: 0.5rem;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* فرم */
+    .form-container {
+      padding: 2.5rem;
+      background: white;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .form-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .form-label {
+      font-size: 0.95rem;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .form-control {
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-family: 'Vazirmatn', sans-serif;
+      transition: border 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-orange);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    }
+
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      padding: 0.9rem 0;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      width: 100%;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn-outline-primary {
+      border-color: var(--primary-orange);
+      color: var(--primary-orange);
+      border-radius: 50px;
+      padding: 0.8rem 0;
+      font-weight: 500;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .btn-outline-primary:hover {
+      background: var(--primary-orange);
+      color: white;
+    }
+
+    .verification-code {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .code-input {
+      width: 3.5rem;
+      height: 3.5rem;
+      text-align: center;
+      font-size: 1.5rem;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .code-input:focus {
+      border-color: var(--primary-orange);
+      transform: scale(1.05);
+    }
+
+    .resend {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .resend a {
+      color: var(--primary-orange);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .resend a:hover {
+      text-decoration: underline;
+    }
+
+    .timer {
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 0;
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 500px) {
+      .login-container {
+        margin: 20px 15px;
+      }
+      .form-container {
+        padding: 1.8rem;
+      }
+      .verification-code {
+        gap: 0.8rem;
+      }
+      .code-input {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- کانتینر اصلی -->
+  <div class="login-container">
+    <!-- هدر با تصویر پس‌زمینه -->
+    <div class="login-header">
+      <img src="icon/pizza-svgrepo-com.svg" alt="پیتزا" class="pizza-icon">
+      <h1>پیتزای من</h1>
+      <p>طعم ایتالیا، در دستان شما</p>
+    </div>
+
+    <!-- فرم ورود با کد -->
+    <div class="form-container">
+      <h3 class="form-title">ورود با کد تأیید</h3>
+
+      <!-- مرحله ۱: ورود شماره -->
+      <div id="step-phone">
+        <div class="mb-4">
+          <label for="user-phone" class="form-label">شماره موبایل خود را وارد کنید</label>
+          <input type="tel" class="form-control" id="user-phone" placeholder="0912 345 6789">
+        </div>
+        <button class="btn btn-primary" onclick="sendCode()">دریافت کد تأیید</button>
+      </div>
+
+      <!-- مرحله ۲: ورود کد -->
+      <div id="step-code" style="display: none;">
+        <p style="color: #555; font-size: 0.95rem;">
+          کد تأیید به شماره <strong id="show-phone">0912 XXX XXXX</strong> ارسال شد.
+        </p>
+
+        <div class="verification-code">
+          <input type="text" class="code-input" maxlength="1" data-next="1" autofocus>
+          <input type="text" class="code-input" maxlength="1" data-next="2" data-prev="0">
+          <input type="text" class="code-input" maxlength="1" data-next="3" data-prev="1">
+          <input type="text" class="code-input" maxlength="1" data-prev="2">
+        </div>
+
+        <button class="btn btn-primary" onclick="verifyCode()">تایید کد</button>
+
+        <div class="resend">
+          <span class="timer" id="timer">ارسال مجدد در ۱:۳۰</span>
+          <br>
+          <a href="#" onclick="resendCode()" id="resend-link" style="display: none;">ارسال مجدد کد</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- فوتر -->
+  <footer>
+    <p>© 1404 پیتزای من. تمامی حقوق محفوظ است.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- اسکریپت ورود با کد -->
+  <script>
+    // شبیه‌سازی ارسال کد
+    function sendCode() {
+      const phoneInput = document.getElementById('user-phone');
+      const phone = phoneInput.value.trim();
+
+      if (!phone || !/^09\d{9}$/.test(phone.replace(/\s/g, ''))) {
+        alert('لطفاً یک شماره معتبر وارد کنید (مثلاً 09123456789)');
+        return;
+      }
+
+      document.getElementById('show-phone').textContent = phone.replace(/(\d{4})\d{3}(\d{3})/, '$1 XXX $2');
+      document.getElementById('step-phone').style.display = 'none';
+      document.getElementById('step-code').style.display = 'block';
+
+      startTimer();
+    }
+
+    // مدیریت تایمر
+    let timeLeft = 90;
+    function startTimer() {
+      const timerEl = document.getElementById('timer');
+      const resendLink = document.getElementById('resend-link');
+      const interval = setInterval(() => {
+        const min = Math.floor(timeLeft / 60);
+        const sec = timeLeft % 60;
+        timerEl.textContent = `ارسال مجدد در ${min}:${sec < 10 ? '0' + sec : sec}`;
+        timeLeft--;
+
+        if (timeLeft < 0) {
+          clearInterval(interval);
+          timerEl.style.display = 'none';
+          resendLink.style.display = 'inline';
+        }
+      }, 1000);
+    }
+
+    // ارسال مجدد کد
+    function resendCode() {
+      timeLeft = 90;
+      document.getElementById('resend-link').style.display = 'none';
+      document.getElementById('timer').style.display = 'block';
+      startTimer();
+      alert('کد مجدداً ارسال شد!');
+    }
+
+    // انتقال خودکار بین کد‌ها
+    document.querySelectorAll('.code-input').forEach((input, index) => {
+      input.addEventListener('input', function () {
+        if (this.value.length === 1 && this.dataset.next) {
+          document.querySelector(`.code-input[data-next="${this.dataset.next}"]`)?.focus();
+        }
+      });
+
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && !this.value && this.dataset.prev) {
+          document.querySelector(`.code-input[data-prev="${this.dataset.prev}"]`)?.focus();
+        }
+      });
+    });
+
+    // تأیید کد
+    function verifyCode() {
+      const code = Array.from(document.querySelectorAll('.code-input')).map(inp => inp.value).join('');
+      if (code.length !== 4 || code.includes('')) {
+        alert('لطفاً کد ۴ رقمی را کامل وارد کنید.');
+        return;
+      }
+
+      // در حالت واقعی: ارسال به API
+      alert('ورود شما با موفقیت انجام شد!');
+      // مثلاً: window.location.href = 'profile.html';
+    }
+  </script>
+</body>
+</html>
